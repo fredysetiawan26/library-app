@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library App</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+    <!-- Flickity -->
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+</head>
+
+<style>
+    .carousel-cell {
+        width: 50%;
+        height: 290px;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+</style>
+
+<body>
+    <main class="container-fluid p-0 d-flex flex-row" style="width: 99vw; height: 100vh;">
+        <!-- Add book modal -->
+        <div class="modal fade" id="addBookModal" tabindex="-1" aria-labelledby="addBookModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="addBookModalLabel">Add Data</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="url-image rounded-3" class="col-form-label">Url Image</label>
+                                <input placeholder="Url image..." type="url" class="form-control" id="url-image"
+                                    name="url-image" id="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="title" class="col-form-label">Title</label>
+                                <input placeholder="Title..." type="text" class="form-control" name="title" id="title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="col-form-label">Description</label>
+                                <textarea placeholder="Description..." class="form-control" id="description"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="d-flex flex-column position-relative"
+            style="width: 20vw; height: 200vh; box-shadow: 10px 0px 15px -5px rgba(186, 186, 186, 0.6);">
+            <!-- Profil picture -->
+            <img class="img-fluid mt-5 mx-auto" style="width: 150px;" src="../assets/images/avatar.png" alt="">
+            <h5 class="mt-2 mx-auto">Fredy Setiawan</h5>
+            <!-- Logout buton -->
+            <button class="d-flex btn align-self-center align-items-center rounded-3"
+                style="border-color: grey;height: 25px; font-size: small; font-weight: 600;" type="button">
+                <a class="text-dark fw-bold text-decoration-none" href="../pages/login.html">
+                    <img class="img-fluid object-fit-contain align-self-center m-1" style="width: 15px;"
+                        src="../assets/images/exit.png" alt="">Logout</a></button>
+            <!-- Menu -->
+            <a class="text-dark text-decoration-none ps-4 mt-4" style="font-weight: 700;" href="#">Explore</a>
+            <a class="text-dark text-decoration-none ps-4 mt-4" style="font-weight: 700;" href="#">History</a>
+            <a data-bs-toggle="modal" data-bs-target="#addBookModal" class="text-dark text-decoration-none ps-4 mt-4"
+                style="font-weight: 700;" href="#addBookModal">Add Book</a>
+
+        </aside>
+
+        <!-- Content -->
+        <section class="d-flex flex-column position-relative" style="width: 80vw; height: auto;">
+
+            <!-- Navbar -->
+            <nav class="navbar-light d-flex flex-grow-1 flex-shrink-1 flex-wrap align-items-center position-relative mx-auto my-auto"
+                style="width: 100%; height: 5rem;box-shadow: 0px 10px 15px -5px rgba(186, 186, 186, 0.6);">
+
+                <!-- nav items -->
+                <div class="nav d-flex flex-grow-1 flex-shrink-1 justify-content-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" style="font-weight: 600;"
+                            data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">All Categories</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Novel</a></li>
+                            <li><a class="dropdown-item" href="#">Education</a></li>
+                            <li><a class="dropdown-item" href="#">Politic</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Other</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" style="font-weight: 600;"
+                            data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">All Time</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Newest</a></li>
+                            <li><a class="dropdown-item" href="#">2000s</a></li>
+                            <li><a class="dropdown-item" href="#">1990s</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Other</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Search box -->
+                    <form class="form-check-inline d-flex position-relative mx-auto">
+                        <input class="form rounded-2 border-1 mr-sm-2 align-self-center ps-2"
+                            style="outline: none; height: 1.7rem;" type="search" placeholder="search book"
+                            aria-label="Search">
+                        <button
+                            class="d-flex btn btn-outline-success ms-2 my-2 my-sm-0 align-self-center align-items-center"
+                            style="height: 1.7rem;" type="submit">Search</button>
+                    </form>
+
+                    <!-- logo -->
+                    <img class="img-fluid d-flex position-relative" style="height: 2.6rem; right: 1%;"
+                        src="../assets/images/logo-no-background.png" alt="logo-library">
+
+                </div>
+            </nav>
+
+            <!-- Content Book -->
+            <section class="d-flex flex-column position-relative mx-auto my-auto" style="width: 100%; top: 25px;">
+                <!-- Carousel -->
+                <div class="d-flex flex-column" style="width: 80vw;" data-flickity='{"wrapAround":true}'>
+                    <!-- <div class="d-flex flex-column bg-primary-subtle" style="width: 20vw;">
+                        <img class="carousel object-fit-cover carousel-cell" style="margin-right: 2; width: 50%;"
+                        src="../assets/images/dilan-1990.jpg" alt="Dilan 1990">
+                        <div class="d-block bg-dark-subtle position-relative"
+                        style="top: -4.8rem; width: fit-content;">
+                        <h4>Dilan 1990</h4>
+                        <p>Pidi Baiq</p>
+                    </div>
+                </div> -->
+
+                    <!-- Book carousel -->
+                    <img class="carousel object-fit-cover carousel-cell" style="margin-right: 2; width: 50%;"
+                        src="../assets/images/dilan-1990.jpg" alt="Dilan 1990">
+                    <img class="carousel object-fit-cover carousel-cell" src="../assets/images/hujan-tere liye.jpg"
+                        alt="Hujan">
+                    <img class="carousel object-fit-cover carousel-cell" src="../assets/images/laskar-pelangi2.jpg"
+                        alt="Laskar Pelangi">
+                    <img class="carousel object-fit-cover carousel-cell" src="../assets/images/harga sebuah percaya.jpg"
+                        alt="Hanya Sebuah Percaya">
+                    <img class="carousel object-fit-cover carousel-cell" src="../assets/images/harry-potter.jpg"
+                        alt="Harry Potter">
+                    <img class="carousel object-fit-cover carousel-cell" src="../assets/images/marmut merah jambu.jpg"
+                        alt="Marmut Merah Jambu">
+                    <img class="carousel object-fit-cover carousel-cell"
+                        src="../assets/images/pulang pergi-tere liye.jpg" alt="Pulang Pergi">
+                </div>
+
+                <section class="d-flex flex-column my-5">
+                    <!-- Title List of Books -->
+                    <div class="d-flex ps-3 mb-3">
+                        <h5 class="fw-bold fs-4">List Book</h5>
+                    </div>
+
+                    <!-- Card book -->
+                    <div class="d-flex flex-row flex-wrap h-auto justify-content-center"
+                        style="width: 80vw; top: 400px;">
+
+                        <div class="card mx-auto h-30 mb-5 rounded-4 shadow-lg" style="width: 25vw;">
+                            <a class="text-black text-decoration-none" href="../pages/detail/detail-dilan-1990.html">
+                                <img src="../assets/images/dilan-1990.jpg" class="img-fluid rounded-top-4"
+                                    style="width: 100%; height: 150px; object-fit: cover;" alt="...">
+                                <div class="card-body">
+                                    <h5 class="d-block card-title text-truncate" style="max-width: 300px;">Dilan 1990
+                                    </h5>
+                                    <p class="card-text"
+                                        style="overflow: hidden;display: -webkit-box; -webkit-line-clamp: 4;-webkit-box-orient: vertical; max-width: fit-content; margin: 25px, auto;">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ab quidem in
+                                        distinctio.</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="card mx-auto h-30 mb-5 rounded-4 shadow-lg" style="width: 25vw;">
+                            <a class="text-black text-decoration-none" href="../pages/detail/detail-harry-potter.html">
+                                <img src="../assets/images/harry-potter.jpg" class="img-fluid rounded-top-4"
+                                    style="width: 100%; height: 150px; object-fit: cover;" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title text-truncate" style="max-width: 300px;">Harry Potter</h5>
+                                    <p class="card-text"
+                                        style="overflow: hidden;display: -webkit-box; -webkit-line-clamp: 4;-webkit-box-orient: vertical; max-width: fit-content; margin: 25px, auto;">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ab quidem in
+                                        distinctio.</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="card mx-auto h-30 mb-5 rounded-4 shadow-lg" style="width: 25vw;">
+                            <img src="../assets/images/harga sebuah percaya.jpg" class="img-fluid rounded-top-4"
+                                style="width: 100%; height: 150px; object-fit: cover;" alt="...">
+                            <div class="card-body">
+                                <h5 class="d-block card-title text-truncate" style="max-width: 300px;">Harga Sebuah
+                                    Percaya</h5>
+                                <p class="card-text"
+                                    style="overflow: hidden;display: -webkit-box; -webkit-line-clamp: 4;-webkit-box-orient: vertical; max-width: fit-content; margin: 25px, auto;">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ab quidem in
+                                    distinctio.</p>
+                            </div>
+                        </div>
+
+                        <div class="card mx-auto h-30 mb-5 rounded-4 shadow-lg" style="width: 25vw;">
+                            <img src="../assets/images/hujan-tere liye.jpg" class="img-fluid rounded-top-4"
+                                style="width: 100%; height: 150px; object-fit: cover;" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-truncate" style="max-width: 300px;">Hujan</h5>
+                                <p class="card-text"
+                                    style="overflow: hidden;display: -webkit-box; -webkit-line-clamp: 4;-webkit-box-orient: vertical; max-width: fit-content; margin: 25px, auto;">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ab quidem in
+                                    distinctio.</p>
+                            </div>
+                        </div>
+
+                        <div class="card mx-auto h-30 mb-5 rounded-4 shadow-lg" style="width: 25vw;">
+                            <img src="../assets/images/laskar-pelangi2.jpg" class="img-fluid rounded-top-4"
+                                style="width: 100%; height: 150px; object-fit: cover;" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-truncate" style="max-width: 300px;">Laskar Pelangi</h5>
+                                <p class="card-text"
+                                    style="overflow: hidden;display: -webkit-box; -webkit-line-clamp: 4;-webkit-box-orient: vertical; max-width: fit-content; margin: 25px, auto;">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ab quidem in
+                                    distinctio.</p>
+                            </div>
+                        </div>
+
+                        <div class="card mx-auto h-30 mb-5 rounded-4 shadow-lg" style="width: 25vw;">
+                            <img src="../assets/images/marmut merah jambu.jpg" class="img-fluid rounded-top-4"
+                                style="width: 100%; height: 150px; object-fit: cover;" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-truncate" style="max-width: 300px;">Marmut Merah Jambu</h5>
+                                <p class="card-text"
+                                    style="overflow: hidden;display: -webkit-box; -webkit-line-clamp: 4;-webkit-box-orient: vertical; max-width: fit-content; margin: 25px, auto;">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ab quidem in
+                                    distinctio.</p>
+                            </div>
+                        </div>
+
+                        <div class="card mx-auto h-30 mb-5 rounded-4 shadow-lg" style="width: 25vw;">
+                            <img src="../assets/images/pulang pergi-tere liye.jpg" class="img-fluid rounded-top-4"
+                                style="width: 100%; height: 150px; object-fit: cover;" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-truncate" style="max-width: 300px;">Pulang Pergi</h5>
+                                <p class="card-text"
+                                    style="overflow: hidden;display: -webkit-box; -webkit-line-clamp: 4;-webkit-box-orient: vertical; max-width: fit-content; margin: 25px, auto;">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ab quidem in
+                                    distinctio.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <!-- Script Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
+    <!-- flickity -->
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</body>
+
+</html>

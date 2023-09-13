@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Buku Harry Potter</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+</head>
+
+<body>
+  <main class="container-fluid p-0">
+    <!-- Edit book modal -->
+    <div class="modal fade" id="editBookModalHarryPotter" tabindex="-1" aria-labelledby="editBookModalHarryPotterLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="editBookModalHarryPotterLabel">Edit Data</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="url-image rounded-3" class="col-form-label">Url Image</label>
+                <input placeholder="http://gambar.com/HarryPotter.jpg" type="url" class="form-control" id="url-image"
+                  name="url-image" id="">
+              </div>
+              <div class="mb-3">
+                <label for="title" class="col-form-label">Title</label>
+                <input placeholder="Harry Potter" type="text" class="form-control" name="title" id="title">
+              </div>
+              <div class="mb-3">
+                <label for="description" class="col-form-label">Description</label>
+                <textarea
+                  placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quidem quos, hic fuga ad, suscipit quia officiis aliquam tempore officia quibusdam odio recusandae non magni voluptatibus assumenda, nesciunt quas! Amet."
+                  class="form-control" id="description"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete book modal -->
+    <div class="modal fade" id="deleteBookModalHarryPotter" tabindex="-1" aria-labelledby="deleteBookModalHarryPotterLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="deleteBookModalHarryPotterLabel">Are you sure?</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Do you really want to delete these records? This process cannot be undone.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hapus</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- back icon -->
+    <a href="../home.html">
+      <img src="../../assets/images/icons8-back-100.png" alt="back icon"
+        class="img-fluid position-absolute rounded-4 m-3 shadow" style="width: 40px;">
+    </a>
+
+    <section class="container-fluid p-0" style="height: 50vh">
+      <!-- Nav edit & delete -->
+      <nav class="nav d-flex position-absolute me-auto p-2" style="right: 2%; top: 2%">
+        <li class="bg-success rounded-2 mb-2 me-2 p-0">
+          <a class="nav-link text-light" data-bs-toggle="modal" data-bs-target="#editBookModalHarryPotter"
+           href="#editBookModalHarryPotter">Edit</a>
+        </li>
+        <li class="bg-dark rounded-2 mb-2 me-2 p-0">
+          <a class="nav-link text-light" data-bs-toggle="modal" data-bs-target="#deleteBookModalHarryPotter"
+          href="#deleteBookModalHarryPotter">Delete</a>
+        </li>
+      </nav>
+
+      <!-- backdrop book cover -->
+      <img src="../../assets/images/harry-potter.jpg" class="img-fluid"
+        style="width: 100%; height: 100%; object-fit: cover" alt="Harry Potter" />
+      <!-- book popup cover -->
+      <img src="../../assets/images/harry-potter.jpg" alt=""
+        class="img-fluid rounded-3 position-absolute shadow-lg me-2" style="
+            width: 130px;
+            height: auto;
+            object-fit: contain;
+            right: 3%;
+            top: 28%;
+          " />
+    </section>
+
+    <!-- Type of book -->
+    <p class="d-flex bg-warning text-light align-items-center justify-content-center rounded-4 ms-5 mt-4"
+      style="width: 80px; height: 25px; font-weight: 700;">
+      Novel
+    </p>
+
+    <!-- Details of book -->
+    <div class="d-flex flex-row position-relative align-items-center me-3">
+      <!-- Title -->
+      <h1 class="ps-5 d-flex">HARRY POTTER</h1>
+      <!-- Avaiability -->
+      <h4 class="ps-5 d-flex text-danger position-relative" style="right: 20px">
+        Not Avaiable
+      </h4>
+    </div>
+    <!-- Date of book -->
+    <p class="d-flex ps-5" style="font-weight: 700; font-size: 15px;">12 Januari 2016</p>
+    <!-- Book summary -->
+    <article class="text-justify ps-5 pe-5" style="margin-right: 18%;">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quidem
+      quos, hic fuga ad, suscipit quia officiis aliquam tempore officia
+      quibusdam odio recusandae non magni voluptatibus assumenda, nesciunt
+      quas! Amet. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Veniam autem iusto deserunt perferendis, dolorum dolor delectus quia
+      molestias doloremque nulla.
+    </article>
+
+    <!-- button borrow -->
+    <button class="btn btn-warning position-fixed p-2 text-light me-2" style="
+          width: 120px;
+          right: 3%;
+          bottom: 5%;
+          font-size: larger;
+          font-weight: 700;
+        ">
+      Borrow
+    </button>
+  </main>
+  <!-- Script Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
